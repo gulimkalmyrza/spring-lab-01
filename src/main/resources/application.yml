@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: spring-lab
+
+server:
+  port: 8080
+
+app:
+  owner: Kalmyrza Gulim
+  group: IT1-2409IS
+  mail:
+    from: 39859@iitu.kz
+    retry-count: 3
+    timeout: 5s
+    enabled: true
+  integration:
+    base-url: https://api.iitu.kz
+    timeout: 10s
+
+logging:
+  level:
+    kz.iitu: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,env,configprops,conditions
+  endpoint:
+    env:
+      show-values: ALWAYS
+    configprops:
+      show-values: ALWAYS
