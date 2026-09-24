@@ -22,7 +22,6 @@ public class NotificationService {
         this.all = all;
         this.byName = byName;
     }
-
     public String viaPrimary(String message) { return primary.send(message); }
 
     public String viaConsole(String message) { return console.send(message); }
@@ -30,6 +29,5 @@ public class NotificationService {
     public List<String> viaAll(String message) {
         return all.stream().map(n -> n.send(message)).toList();
     }
-
     public Set<String> names() { return byName.keySet(); }
 }
