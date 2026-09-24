@@ -13,12 +13,20 @@ import java.time.Duration;
 public record AppProperties(
         @NotBlank String owner,
         @NotBlank String group,
-        @Valid Mail mail) {
+        @Valid Mail mail,
+        @Valid Integration integration) {
 
     public record Mail(
             @NotBlank @Email String from,
             @Min(1) @Max(10) @DefaultValue("3") int retryCount,
             @DefaultValue("5s") Duration timeout,
             @DefaultValue("true") boolean enabled) {
+    }
+
+    public record Integration(
+            @NotBlank
+            @Pattern(regexp = "^https://.+", message = "must start with https://")
+            String baseUrl,
+            @NotNull @DefaultValue("10s") Duration timeout) {
     }
 }

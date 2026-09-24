@@ -23,15 +23,18 @@ public class Lab3Controller {
 
     @GetMapping("/config")
     public Map<String, Object> config() {
-        return Map.of(
-                "owner",          props.owner(),
-                "group",          props.group(),
-                "mailFrom",       props.mail().from(),
-                "mailRetryCount", props.mail().retryCount(),
-                "mailTimeout",    props.mail().timeout().toString(),
-                "mailEnabled",    props.mail().enabled(),
-                "serverPort",     environment.getProperty("server.port"),
-                "activeProfiles", Arrays.asList(environment.getActiveProfiles()),
-                "banner",         banner.describe());
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("owner", props.owner());
+        result.put("group", props.group());
+        result.put("mailFrom", props.mail().from());
+        result.put("mailRetryCount", props.mail().retryCount());
+        result.put("mailTimeout", props.mail().timeout().toString());
+        result.put("mailEnabled", props.mail().enabled());
+        result.put("integrationBaseUrl", props.integration().baseUrl());
+        result.put("integrationTimeout", props.integration().timeout().toString());
+        result.put("serverPort", environment.getProperty("server.port"));
+        result.put("activeProfiles", Arrays.asList(environment.getActiveProfiles()));
+        result.put("banner", banner.describe());
+        return result;
     }
 }
