@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{book.new}">New book</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<h1 th:text="${#locale} + ' | ' + #{book.new}">Test</h1>
+
+<!-- Language switch -->
+<p>
+    <a th:href="@{/books/new(lang='en')}">English</a> |
+    <a th:href="@{/books/new(lang='ru')}">Русский</a>
+</p>
+
+<form th:action="@{/books}" th:object="${form}" method="post">
+
+    <!-- Book title -->
+    <p>
+        <label th:text="#{book.title}">Title</label>
+        <input type="text"
+               th:field="*{title}"
+               th:errorclass="is-invalid">
+        <span class="error" th:errors="*{title}"></span>
+    </p>
+
+    <!-- Author -->
+    <p>
+        <label th:text="#{book.author}">Author</label>
+        <input type="text"
+               th:field="*{author}"
+               th:errorclass="is-invalid">
+        <span class="error" th:errors="*{author}"></span>
+    </p>
+
+    <!-- Publication year -->
+    <p>
+        <label th:text="#{book.year}">Year</label>
+        <input type="number"
+               th:field="*{year}"
+               th:errorclass="is-invalid">
+        <span class="error" th:errors="*{year}"></span>
+    </p>
+
+    <!-- Genre -->
+    <p>
+        <label th:text="#{book.genre}">Genre</label>
+        <select th:field="*{genre}"
+                th:errorclass="is-invalid">
+
+            <option value=""
+                    th:text="#{book.genre.choose}">
+                Choose genre
+            </option>
+
+            <option th:each="g : ${genres}"
+                    th:value="${g}"
+                    th:text="${g}">
+            </option>
+        </select>
+
+        <span class="error" th:errors="*{genre}"></span>
+    </p>
+
+    <!-- Availability -->
+    <p>
+        <label>
+            <input type="checkbox" th:field="*{available}">
+            <span th:text="#{book.available}">Available</span>
+        </label>
+    </p>
+
+    <!-- Save button -->
+    <button type="submit" th:text="#{form.submit}">
+        Save
+    </button>
+
+</form>
+
+</body>
+</html>

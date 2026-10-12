@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 40px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #cccccc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #eeeeee;
+}
+
+.flash {
+    padding: 10px;
+    background: #dff0d8;
+    border: 1px solid #b5d6a7;
+}
+
+.is-invalid {
+    border: 2px solid red;
+}
+
+.error {
+    color: red;
+    display: block;
+    margin: 5px 0;
+}
+
+.alert {
+    color: #b00020;
+    background: #fff0f0;
+    padding: 10px;
+    margin-bottom: 15px;
+}
