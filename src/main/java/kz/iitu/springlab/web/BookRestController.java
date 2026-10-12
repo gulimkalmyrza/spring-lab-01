@@ -3,7 +3,9 @@ package kz.iitu.springlab.web;
 
 import kz.iitu.springlab.catalog.Book;
 import kz.iitu.springlab.catalog.BookService;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
+@Validated
 public class BookRestController {
 
     private final BookService service;
@@ -21,7 +24,13 @@ public class BookRestController {
 
     @GetMapping
     public List<Book> list(
-            @RequestParam(required = false) String author,
+            @RequestParam(required = false)
+            @Size(
+                    max = 50,
+                    message = "Author search must not exceed 50 characters"
+            )
+            String author,
+
             @RequestParam(defaultValue = "10") int limit) {
 
         return service.findAll(author)
